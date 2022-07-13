@@ -145,3 +145,5 @@ _build
 
 # development drafts folder
 .drafts
+
+data/

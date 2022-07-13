@@ -94,7 +94,7 @@ def fetch_all_metadata(
 
     # Initiate list of dicts that will be converted to DataFrame
     dictionary_list = []
-    file_suffix = ""
+    file_suffix = ".json"
     bulk_ipfs_success = False
     uri = ""
     if uri_base is None:
