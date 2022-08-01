@@ -69,3 +69,10 @@ IPFS_GATEWAY = config.get("ipfs_gateway")
 OPENSEA_API_KEY = config.get("opensea_api_key")
 MORALIS_API_KEY = config.get("moralis_api_key")
 THE_INDEX_API_KEY = config.get("the_index_api_key")
+FLIPSIDE_API_KEY = config.get("flipside_api_key")
+
+###
+# Metadata Aggregator Base URL's
+###
+NFTNERDS_BASE_URL = "https://d1h1fvurhxrz4j.cloudfront.net/metadata/"
+ALPHASHARKS_BASE_URL = "https://alphasharksv3.s3.us-east-1.amazonaws.com/metadata/"

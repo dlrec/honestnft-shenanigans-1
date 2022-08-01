@@ -95,3 +95,27 @@ def get_opensea_events(
             only_opensea=only_opensea,
             token_id=token_id,
         )
+
+
+def get_opensea_collection_slug(contract_address: str) -> str:
+    """
+    API wrapper for the OpenSea events API.
+    https://docs.opensea.io/reference/retrieving-a-single-contract
+
+    :param asset_contract_address: The NFT contract address for which to get the OpenSea collection slug
+
+    :return: a string with the collecton slug
+    """
+
+    url = f"https://api.opensea.io/api/v1/asset_contract/{contract_address}"
+
+    headers = {"Accept": "application/json", "X-API-KEY": config.OPENSEA_API_KEY}
+
+    response = requests.request("GET", url, headers=headers)
+
+    if response.status_code == 200:
+        return response.json()["collection"]["slug"]
+    else:
+        print(f"{response.status_code} error from OpenSea API")
+        print(f"Reason: {response.reason}")
+        return None
