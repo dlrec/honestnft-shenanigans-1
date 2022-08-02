@@ -320,6 +320,25 @@ def save_raw_attributes_csv(
     attribute_df.to_csv(file_path)
 
 
+def get_rt_slug(contract_address: str) -> str:
+    url = "https://api.rarity.tools/api/v0/collections"
+    response = requests.request("GET", url)
+
+    rt_collections = response.json()["projects"]["lookup"]
+
+    try:
+        slug = next(
+            z
+            for z in rt_collections
+            if rt_collections[z]["contracts"][0] == contract_address
+        )
+    except:
+        # Catches a missing collection or a malformed contract address
+        slug = -1
+
+    return slug
+
+
 def _cli_parser() -> argparse.ArgumentParser:
     """
     Create the command line argument parser
