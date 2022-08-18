@@ -326,17 +326,9 @@ def get_rt_slug(contract_address: str) -> str:
 
     rt_collections = response.json()["projects"]["lookup"]
 
-    try:
-        slug = next(
-            z
-            for z in rt_collections
-            if rt_collections[z]["contracts"][0] == contract_address
-        )
-    except:
-        # Catches a missing collection or a malformed contract address
-        slug = -1
-
-    return slug
+    for key, val in rt_collections.items():
+        if list(filter(lambda x: x == contract_address, val["contracts"])):
+            return key
 
 
 def _cli_parser() -> argparse.ArgumentParser:

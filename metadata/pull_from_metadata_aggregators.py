@@ -8,7 +8,6 @@ import requests
 import time
 import datetime
 import json
-import pandas as pd
 
 import pull_from_rt
 from honestnft_utils import config, opensea
@@ -20,7 +19,8 @@ def get_metadata_from_aggregator(
     if metadata_source == "rt":
         # Fetch metadata from Rarity Tools
         slug = pull_from_rt.get_rt_slug(contract_address)
-        if slug != -1:
+
+        if slug is not None:
             pull_from_rt.download(slug)
         else:
             print("Metadata for this collection is not available in RarityTools")
